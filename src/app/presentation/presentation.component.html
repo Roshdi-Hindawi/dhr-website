@@ -1,0 +1,468 @@
+<div class="wrapper">
+    <div class="page-header page-header-small">
+        <ng-image-slider [animationSpeed]="1" [images]="imageObject" [autoSlide]="false" [infinite]="true" [showArrow]="true" [imageSize]="{width: '100%', height: '87%'}" #nav></ng-image-slider>
+        <div class="content-center">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <!-- <h1 class="title" style="font-family: math; font-size: 34px large;">Delphin El Habib</h1>
+                    <hr>
+                    <div class="pro">★★★★</div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="reservation-section">
+        <!-- <form class="form" [formGroup]="clientForm">
+            <div class="text-left" *ngIf="reserve_step1" @fade> 
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="pull-left">
+                            <label style="color: cadetblue">Date d'arrivé</label>
+                            <div class="input-group" [ngClass]="{'input-group-focus':focus4===true}">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">  <i class="now-ui-icons arrows-1_minimal-down"></i></span>
+                                </div>
+                                <dp-date-picker #dayPicker class="form-control" name="date_a" formControlName="date_a"></dp-date-picker>
+                            </div>
+                        </div>
+                        <div class="pull-left">
+                            <label style="color: cadetblue">Date de départ</label>
+                            <div class="input-group" [ngClass]="{'input-group-focus':focus5===true}">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">  <i class="now-ui-icons arrows-1_minimal-up"></i></span>
+                                </div>
+                                <dp-date-picker #dayPicker2 class="form-control" name="date_d" formControlName="date_d"></dp-date-picker>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="pull-left">
+                            <label style="color: cadetblue">Adultes</label>
+                            <div class="input-group" [ngClass]="{'input-group-focus':focus2===true}">
+                                <select class="input-group">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                        </select>
+                            </div>
+                        </div>
+                        <div class="pull-left" style="margin-left: 25px;">
+                            <label style="color: cadetblue">Enfants</label>
+                            <div class="input-group" [ngClass]="{'input-group-focus':focus2===true}">
+                                <select class="input-group">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-md btn-primary" (click)="setCalculated(true)">Calculer le prix</button>
+                    </div>
+                </div>
+                <hr *ngIf="calculated">
+                <h4 class="card-title text-center" style="color: rgb(163, 64, 80)" *ngIf="calculated"><b>Chambres</b></h4>
+                <div class="text-left" *ngIf="calculated">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1 x Double en Chambre Standard</td>
+                                    <td>Logement Petit Déjeuner</td>
+                                    <td>de 22 TND</td>
+                                    <td class="td-actions text-center">
+                                        <button class="btn btn-md btn-primary" (click)="reserveStep2(true)">Réserver</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1 x Double en Chambre Standard</td>
+                                    <td>Demi Pension</td>
+                                    <td>de 68 TND</td>
+                                    <td class="td-actions text-center">
+                                        <button class="btn btn-md btn-primary" (click)="reserveStep2(true)">Réserver</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1 x Double en Chambre Standard</td>
+                                    <td>Pension Complet</td>
+                                    <td>de 117 TND</td>
+                                    <td class="td-actions text-center">
+                                        <button class="btn btn-md btn-primary" (click)="reserveStep2(true)">Réserver</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1 x Double en Chambre Standard</td>
+                                    <td>All In Soft</td>
+                                    <td>de 160 TND</td>
+                                    <td class="td-actions text-center">
+                                        <button class="btn btn-md btn-primary" (click)="reserveStep2(true)">Réserver</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="text-left" *ngIf="reserve_step2" @fade>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label style="color: cadetblue">Nom</label>
+                        <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Nom Complet..." name="full_name" formControlName="full_name" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label style="color: cadetblue">Prénom</label>
+                        <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="E-mail..." name="email" formControlName="email" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label style="color: cadetblue">E-mail</label>
+                        <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                            </div>
+                            <input type="email" class="form-control" placeholder="E-mail..." name="email" formControlName="email" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label style="color: cadetblue">Mobile</label>
+                        <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Mobile..." name="phone" formControlName="phone" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <a href="/" class="btn btn-md btn-primary">Confirmer votre Réservation</a>
+            </div>
+        </form> -->
+    </div>
+    <div class="section section-about-us">
+        <div class="container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto text-center">
+                        <h2 class="title">A Propos</h2>
+                        <h5 class="description text-left" style="color: black">
+                            <p>{{aboutText}}</p>
+                        </h5>
+                    </div>
+                </div>
+                <div class="separator separator-primary"></div>
+                <div class="section-story-overview">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- First image on the left side -->
+                            <div class="image-container image-left" style="background-image: url('assets/img/gallery/31.jpg')">
+                            </div>
+                            <div style="margin-top: 5%; margin-bottom: 5%;">
+                                <!-- <legend>Divertissement</legend>
+                                <hr>
+                                <b style="color: cadetblue;">Delphin Adultes:</b>
+                                <p> Soirée Delphin Adultes : comédie show, Latino show, élection Miss/mister, variétés show, karaoké. Différents jeux de groupes, jeux de famille ... </p>
+
+
+                                <b style="color: cadetblue;">Delphin Kids : (Bébés 0 – 3 ans) :</b>
+                                <p> Lits bébés, chaises hautes pour bébés, zone bébés dans le restaurant dans la piscine.. Activités spéciales pour bébés, Story Time, puzzles, etc. sous la supervision d’un membre de notre team d’animation (avec parents)</p>
+
+
+                                <b style="color: cadetblue;">Delphin Kids (4 – 12 ans):</b>
+                                <p> Delphin kids : différents jeux de groupe, jeux de familles, jeux de fléchettes, jeux d’adresse, puzzles, cour d’arabe, cinéma pour enfant projection film, pétanque, bowling, tennis de table, mini disco, club de danse, kids
+                                    corner Sous la supervision d’un membre de notre team d’animation.</p> -->
+                            </div>
+
+
+                            <!-- Second image on the left side of the article -->
+                            <div class="image-container image-left-bottom" style="background-image: url('assets/img/selected/home/1.jpg')"></div>
+                        </div>
+                        <div class="col-md-5" style="color: black">
+                            <!-- First image on the right side, above the article -->
+                            <div class="image-container image-right" style="background-image: url('assets/img/landing/4.png')"></div>
+                            <legend>Services</legend>
+                            <hr>
+                            <p>- Plage privée, Terrasse, Jardin</p>
+                            <p>- Piscine extérieure, Piscine intérieure, bain turc/à vapeur, massage (en supplément), Spa et centre de bien-être (en supplément), centre de remise en forme (en supplément)
+                            </p>
+                            <p>- Discothèque/DJ, Équipe d'animation, Tennis de table, Aire de jeux pour enfants, parcours de golf (à moins de 3 km) (en supplément), Court de tennis
+                            </p>
+                            <p>- Snack-bar, Restaurant (buffet), Bar
+
+                            </p>
+                            <p>- Bagagerie, Service de change, Blanchisserie/laverie (en supplément), Centre d'affaires, Réception ouverte 24h/24, salles de réunions/banquets, Service d'étage
+                            </p>
+                            <p>- Climatisation, Chauffage, Coffre-fort, Ascenseur, Chambres familiales, Chambres non-fumeurs
+                            </p>
+                        </div>
+                    </div>
+                    <br><br>
+                    <hr><br><br>
+                    <div align="center">
+                        <a class="btn btn-md btn-info btn-rounded" [routerLink]="['/gallerie']"><i class="fa fa-eye"></i>&nbsp;Voir Gallerie</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section section-components" data-background-color="black">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <h2 class="title">Type de chambres Delphin El Habib</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 px-0">
+                    <div class="card card-background card-background-product card-no-shadow" style="background-image: url('assets/img/landing/bed1.jpg')">
+                        <div class="card-body">
+                            <h4 class="category" style="margin-top:30%; font-family: math; color:black">Chambre Simple 1 lit double</h4>
+                            <!-- <p class="card-description" style="color:white">
+                                Developed on the occasion of an exhibition of the same name, The City Lost & Found: Capturing New York...
+                            </p> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 px-0">
+                    <div class="card card-raised card-background card-background-product card-no-shadow" style="background-image: url('assets/img/selected/chambers/1.jpg')">
+                        <div class="card-body">
+                            <h4 class="category" style="margin-top:30%; font-family: math; color:black">Chambre Double 1 lit double</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 px-0 ">
+                    <div class="card card-background card-background-product card-no-shadow " style="background-image: url( 'assets/img/landing/bed3.jpg') ">
+                        <div class="card-body ">
+                            <h4 class="category " style="margin-top:30%; font-family: math; color:black">Chambre Triple 1 lit simple et 1 lit double</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 px-0">
+                    <div class="card card-background card-background-product card-no-shadow" style="background-image: url('assets/img/landing/bed4.jpg')">
+                        <div class="card-body">
+                            <h4 class="category" style="margin-top:30%; font-family: math; color:black">Chambre Quadruple 2 lits simples et 1 lit double</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center ">
+                <a [routerLink]="[ '/chambres'] " class="btn btn-danger btn-round ">
+                    <i class="fa fa-eye "></i> Voir
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="pricing-2 " id="pricing-2 ">
+        <div class="container ">
+            <div class="row ">
+                <div class="col-md-6 ml-auto mr-auto text-center ">
+                    <h2 class="title ">A Partir de 22,00 (TND)</h2>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-md-4 ">
+                    <div class="card card-pricing card-background card-plain " style="background-image: url( 'assets/img/landing/2.png') ">
+                        <div class="card-body " style="margin-top:50% ">
+                            <h6 class="category " style="color: white ">Sans Pension</h6>
+                            <h1 class="card-title " style="color: white ">De 22<small>TND</small></h1>
+                            <!-- <ul>
+                                <li>
+                                    <b>10GB</b> Disk Space</li>
+                                <li>
+                                    <b>100GB</b> Monthly Bandwidth</li>
+                                <li>
+                                    <b>20</b> Email Accounts</li>
+                                <li>
+                                    <b>Unlimited</b> subdomains</li>
+                            </ul> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <div class="card card-pricing card-background card-raised " style="background-image: url( 'assets/img/landing/3.png') ">
+                        <div class="card-body " style="margin-top:50% ">
+                            <h6 class="category text-info " style="color: white ">Demi-Pension</h6>
+                            <h1 class="card-title " style="color: white ">De 68<small>TND</small></h1>
+                            <!-- <ul>
+                                <li>
+                                    <b>5GB</b> Disk Space</li>
+                                <li>
+                                    <b>50GB</b> Monthly Bandwidth</li>
+                                <li>
+                                    <b>10</b> Email Accounts</li>
+                                <li>
+                                    <b>Unlimited</b> subdomains</li>
+                            </ul> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <div class="card card-pricing card-background card-plain " style="background-image: url( 'assets/img/landing/4.png') ">
+                        <div class="card-body " style="margin-top:50% ">
+                            <h6 class="category " style="color: white ">Pension Complete</h6>
+                            <h1 class="card-title " style="color: white ">De 117<small>TND</small></h1>
+                            <!-- <ul>
+                                <li>
+                                    <b>2GB</b> Disk Space</li>
+                                <li>
+                                    <b>25GB</b> Monthly Bandwidth</li>
+                                <li>
+                                    <b>5</b> Email Accounts</li>
+                                <li>
+                                    <b>Unlimited</b> subdomains</li>
+                            </ul> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contactus-1 section-image " style="background-image: url( 'assets/img/gallery/30.jpg') ">
+        <div class="container ">
+            <div class="main ">
+                <div class="big-map ">
+                    <agm-map [latitude]="lat " [longitude]="lng " [zoom]="zoom " [styles]="styles ">
+                        <agm-marker [latitude]="lat " [longitude]="lng "></agm-marker>
+                    </agm-map>
+                </div>
+                <div class="contact-content ">
+                    <div class="container ">
+                        <div class="row ">
+                            <div class="col-md-5 ml-auto mr-auto " style="margin-top: 5%; ">
+                                <form role="form " id="contact-form " method="post ">
+                                    <label>Nom & Prénom</label>
+                                    <div class="input-group " [ngClass]="{ 'input-group-focus':focus===true} ">
+                                        <div class="input-group-prepend ">
+                                            <span class="input-group-text "><i class="now-ui-icons users_circle-08 "></i></span>
+                                        </div>
+                                        <input type="text " class="form-control " placeholder="Nom & Prénom... " (focus)="focus=true " (blur)="focus=false ">
+                                    </div>
+                                    <label>Email</label>
+                                    <div class="input-group " [ngClass]="{ 'input-group-focus':focus1===true} ">
+                                        <div class="input-group-prepend ">
+                                            <span class="input-group-text "><i class="now-ui-icons ui-1_email-85 "></i></span>
+                                        </div>
+                                        <input type="email " class="form-control " placeholder="Email... " (focus)="focus1=true " (blur)="focus1=false ">
+                                    </div>
+                                    <label>N° Téléphone</label>
+                                    <div class="input-group " [ngClass]="{ 'input-group-focus':focus2===true} ">
+                                        <div class="input-group-prepend ">
+                                            <span class="input-group-text "><i class="now-ui-icons tech_mobile "></i></span>
+                                        </div>
+                                        <input type="text " placeholder="N° Téléphone... " class="form-control " (focus)="focus2=true " (blur)="focus2=false ">
+                                    </div>
+                                    <div class="form-group ">
+                                        <label>Message</label>
+                                        <textarea placeholder="Message... " name="message " class="form-control " id="message " rows="6 "></textarea>
+                                    </div>
+                                    <div class="submit text-center ">
+                                        <input type="submit " class="btn btn-primary btn-raised btn-round disabled " value="Envoyer " disabled/>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-5 ml-auto mr-auto ">
+                                <div class="info info-horizontal mt-5 ">
+                                    <div class="icon icon-primary ">
+                                        <i class="now-ui-icons location_pin "></i>
+                                    </div>
+                                    <div class="description ">
+                                        <!-- <img src="assets/img/map-marker-alt-solid.svg "> -->
+                                        <h4 class="info-title " style="color: black; "><i class="now-ui-icons location_pin "></i>&nbsp;Adresse</h4>
+                                        <p style="color: black; ">
+                                            <b>Avenue Habib Bourguiba,
+                                            <br>  5000 Monastir,
+                                            <br>  Tunisia</b>
+                                        </p>
+                                        <hr>
+                                    </div>
+                                </div>
+                                <div class="info info-horizontal ">
+                                    <div class="icon icon-primary ">
+                                        <i class="now-ui-icons tech_mobile "></i>
+                                    </div>
+                                    <div class="description ">
+                                        <h4 class="info-title " style="color: black; "><i class="now-ui-icons tech_mobile "></i>&nbsp;Téléphone</h4>
+                                        <p style="color: black; "><b>+216 73 466 750</b></p>
+
+                                        <h4 class="info-title " style="color: black; "><i class="now-ui-icons files_paper "></i>&nbsp;Fax</h4>
+                                        <p style="color: black; "><b>+216 73 466 751</b></p>
+
+                                        <h4 class="info-title " style="color: black; "><i class="now-ui-icons ui-1_email-85 "></i>&nbsp;E-mail</h4>
+                                        <p style="color: black; "><b style="font-size: 18px; ">c.delphingroupe@gmail.com</b></p>
+                                        <p style="color: black; "><b style="font-size: 18px; ">resa.delphingroupe@gmail.com</b></p>
+
+                                        <hr>
+                                        <h4 class="info-title " style="color: black; ">
+                                            <i class="now-ui-icons tech_watch-time "></i>&nbsp;7j/7j, 8:00h-23:00h
+                                        </h4>
+                                        <!-- <p style="color: black; "><b>7j/7j, 8:00h-23:00h</b></p> -->
+                                    </div>
+                                    <br><br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer footer-big footer-white ">
+        <div class="container ">
+            <div class="content ">
+                <div class="row ">
+                    <div class="col-md-12 " align="center ">
+                        <h5>Réseaux Sociaux</h5>
+                        <ul class="social-buttons ">
+                            <li>
+                                <a href="https://www.facebook.com/Hotel.Habib.Monastir/ " target="_blank " class="btn btn-icon btn-neutral btn-facebook btn-round ">
+                                    <i class="fa fa-facebook-square "></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/delphin_elhabib/ " target="_blank " class="btn btn-icon btn-neutral btn-instagram btn-round ">
+                                    <i class="fa fa-instagram "></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#pablo " class="btn btn-icon btn-neutral btn-google btn-round ">
+                                    <i class="fa fa-google-plus "></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="copyright ">
+                Copyrights &copy; {{date | date: 'yyyy'}} <label style="color: cadetblue; cursor: pointer; ">Delphin Hotels & Resorts</label>, All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+</div>

@@ -1,0 +1,26 @@
+<div class="modal-content">
+    <div class="modal-header text-center" align="center">
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+        <!-- <h4>Confirmation</h4> -->
+    </div>
+
+    <div class="modal-body">
+        <img src="assets/img/info.png" width="100px" />
+        <br />
+        <br />
+        <div class="">
+            <div class="pull-left">
+                <button class="btn btn-md btn-secondary" (click)="close()">
+                Annuler
+                </button>
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-md btn-success" (click)="confirm()">
+                Confirmer
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

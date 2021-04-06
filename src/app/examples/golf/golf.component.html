@@ -1,0 +1,105 @@
+<div class="wrapper">
+    <div class="page-header page-header-small">
+        <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/golf/banner_golf.jpg') ;">
+        </div>
+        <div class="content-center">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <h2 class="title">Golf</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="container">
+            <div class="section">
+                <div class="projects-4">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="text-center">
+                                    <legend>Golf Flamingo de Monastir-Tunisie</legend>
+                                </div>
+                                <hr>
+                                <p>
+                                    Parcours exceptionnel, le Golf Flamingo de Monastir, 18 trous Par 72 (6 140 m), est d’une grande technicité qui s’étage de vallons en étangs parmi des vestiges romains. Dessiné par Ronald Fream pour les golfeurs les plus exigeants, il peut intéresser
+                                    tous les niveaux grâces à ses cinq aires de départ par trou, ses 3 trous école et son practice. Long de 6140 mètres pour par 72, le parcours de Flamingo Golf Course se veut résolument sportif et technique. Il faut alterner
+                                    puissance et précision pour venir à bout des nombreux pièges. Surplombant la mer, les fairways enjambent les ravins, suivent la pente des collines, inclinent doucement leurs greens au-dessus des étangs. Outre la longueur
+                                    des trous, larges et judicieusement disposés, plusieurs aires de départs, permettent néanmoins à tous les golfeurs d’accomplir un parcours adapté à leur niveau. Physiques sans être exténuant, ce parcours très aéré permet
+                                    de jouer agréablement pendant toutes les périodes de l’année..
+                                </p>
+                                <hr>
+                                <p>
+                                    Classé « championship », ce Par 72, aux multiples aires d’entraînement, est situé sur un plateau d’oliviers centenaires, aux vues imprenables. C’est l’un des passages obligatoire dans l’itinéraire du golfeur. A la diversité de paysages contrastés (jardin
+                                    suspendu entre « sebkha » et mer, vue sur la baie de Skanès et Monastir), le Golf Flamingo Course se veut « challenging » grâce à son tracé remarquable. L’architecte californien Ronald Fream a judicieusement intégré
+                                    la beauté du site au design, où puissance et précision sont de rigueur pour venir à bout des nombreux pièges. L’Académie assurant stage d’initiation et de perfectionnement
+                                </p>
+                                <hr>
+                                <p>
+                                    <label>Possibilité de location de matériel sur place :</label> <br> ⦁ Voiturettes électriques <br> ⦁ Caddies
+                                </p>
+                                <hr>
+                                <p>
+                                    <label>LES PLUS : </label> <br> Les points de vue du golf sont surprenants et il n’est pas rare de voir des flamants roses s’ébattre en contrebas des fairways. Les spécialistes de la puissance et du doigté se réjouissent.
+                                    Location de caddies, chariots, voiturettes, séries et 1/2 séries. Il peut intéresser tous les niveaux grâces à ses cinq aires de départ par trou, ses 3 trous école et son practice. L’endroit est exceptionnel, magnifiquement
+                                    situé sur un plateau ombragé d’oliviers centenaires. Le Flamingo Golf Course offre le spectacle contrasté d’un jardin suspendu. Le parcours s’étage de pitons en collines, de vallons en étangs sous le ciel bleu azur
+                                    de la Méditerranée et aux rivages toutes proches. Plusieurs professionnels sont à la disposition du golfeur pour lui faire découvrir et apprécier ce parcours. Le practice jouit d’une vue extraordinaire sur l’ensemble
+                                    du Golf. Le Pich & Put autour du club-house vous permettra d’affiner votre jeu.
+                                </p>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-4" *ngFor="let i of images">
+                                        <div class="card card-plain card-blog">
+                                            <div class="card-image">
+                                                <!-- <a href="/#/"> -->
+                                                <img class="img rounded img-raised img-zoom" [src]="i.image" />
+                                                <!-- </a> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer footer-big footer-white">
+        <div class="container">
+            <hr>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12" align="center">
+                        <h5>Réseaux Sociaux</h5>
+                        <ul class="social-buttons">
+                            <li>
+                                <a href="https://www.facebook.com/Hotel.Habib.Monastir/" target="_blank" class="btn btn-icon btn-neutral btn-facebook btn-round">
+                                    <i class="fa fa-facebook-square"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/delphin_elhabib/" target="_blank" class="btn btn-primary btn-neutral btn-round btn-icon">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#pablo" class="btn btn-icon btn-neutral btn-google btn-round">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="copyright">
+                Copyrights &copy; {{date | date: 'yyyy'}} <label style="color: cadetblue; cursor: pointer;">Delphin
+                    Hotels & Resorts</label>, All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+</div>

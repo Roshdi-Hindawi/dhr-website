@@ -1,0 +1,19 @@
+.modal-content {
+    width: 800px !important;
+}
+
+.modal-body h6 {
+    word-wrap: break-word;
+}
+
+.served {
+    color: green;
+}
+
+.not-served {
+    color: rgb(255, 174, 0);
+}
+
+.canceled {
+    color: red;
+}

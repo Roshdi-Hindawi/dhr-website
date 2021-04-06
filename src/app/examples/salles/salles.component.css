@@ -1,0 +1,14 @@
+.img-zoom {
+    width: 550px !important;
+    height: 200px !important;
+}
+
+.img-zoom:hover {
+    max-width: 700px !important;
+    width: 600px !important;
+    height: 400px !important;
+    transition: 0.6s ease !important;
+    position: absolute;
+    z-index: 1;
+    overflow: visible !important;
+}

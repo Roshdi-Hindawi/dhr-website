@@ -1,0 +1,90 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>
+    </div>
+
+    <div class="modal-body">
+        <!-- <div class="row">
+            <div class="col-md-4">
+                <h6 style="color: cadetblue;">Nom & Prénom</h6>
+                <h6>{{data?.full_name}}</h6>
+            </div>
+            <div class="col-md-4">
+                <h6 style="color: cadetblue;">Date de Naissance</h6>
+                <h6>{{data?.b_date}}</h6>
+            </div>
+            <div class="col-md-2">
+                <h6 style="color: cadetblue;">E-mail</h6>
+                <h6>{{data?.email}}</h6>
+            </div>
+            <div class="col-md-2">
+                <h6 style="color: cadetblue;">N° Tél.</h6>
+                <h6>{{data?.tel}}</h6>
+            </div>
+        </div>
+<hr>
+        <div class="row">
+            <div class="col-md-4">
+                <h6 style="color: cadetblue;">Type de Pièce d'identité</h6>
+                <h6>{{data?.id_type}}</h6>
+            </div>
+            <div class="col-md-4">
+                <h6 style="color: cadetblue;">N° Pièce d'identité</h6>
+                <h6>{{data?.id_n}}</h6>
+            </div>
+            <div class="col-md-4">
+                <h6 style="color: cadetblue;">Nationalité</h6>
+                <h6>{{data?.nationality}}</h6>
+            </div>
+        </div>
+<hr>
+        <div class="row">
+            <div class="col-md-6">
+                <h6 style="color: cadetblue;">Date d'Arrivé</h6>
+                <h6>{{data?.date_a}}</h6>
+            </div>
+            <div class="col-md-6">
+                <h6 style="color: cadetblue;">Date de Départ</h6>
+                <h6>{{data?.date_d}}</h6>
+            </div>
+        </div>
+<hr>
+        <div class="row">
+            <div class="col-md-4">
+                <h6 style="color: cadetblue;">Type de Chambre</h6>
+                <h6>{{data?.size}}</h6>
+            </div>
+            <div class="col-md-4">
+                <h6 style="color: cadetblue;">Vue</h6>
+                <h6>{{data?.view}}</h6>
+            </div>
+            <div class="col-md-4">
+                <h6 style="color: cadetblue;">Arrangement</h6>
+                <h6>{{data?.arrangement}}</h6>
+            </div>
+        </div>
+<hr>
+        <div class="row">
+            <div class="col-md-6">
+                <h6 style="color: cadetblue;">Date de Check In</h6>
+                <h6>{{data?.created_at}}</h6>
+            </div>
+            <div class="col-md-6">
+                <h6 style="color: cadetblue;">Statut</h6>
+                <h6 [ngClass]="(data?.status === '1') ? 'served' : (data?.status === '0' ? 'not-served' : 'canceled')">{{data?.status === '0' ? 'En Attente' : (data?.status === '1' ? 'Validé' : 'Annulé')}}</h6>
+            </div>
+        </div>
+<hr>
+        <div class="row">
+            <div class="col-md-6 text-left">
+                <button class="btn btn-md btn-danger" (click)="cancel(data?.id)">Annuler</button>
+            </div>
+            <div class="col-md-6 text-right">
+                <button [ngClass]="(data?.status === '1') ? 'btn btn-md btn-warning' : ((data?.status === '0') ? 'btn btn-md btn-success' : 'btn btn-md btn-danger')" (click)="updateStatus(data?.id,data?.status)">{{data?.status === '0' ? 'Valider' : 'Mettre en Attente'}}</button>
+            </div>
+        </div> -->
+        <div>
+        </div>

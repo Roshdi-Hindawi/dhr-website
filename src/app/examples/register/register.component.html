@@ -1,0 +1,658 @@
+<div class="wrapper">
+    <div class="main">
+        <div class="container">
+            <div class="section">
+                <div class="row">
+                    <div class="col-md-12 mr-auto">
+                        <form class="form" [formGroup]="clientForm">
+                            <div class="card card-signup" *ngIf="reserve_step1" @fade>
+                                <div class="card-body">
+                                    <h4 class="card-title text-center" style="color: rgb(163, 64, 80)"><b>Réservation</b></h4>
+                                    <hr><br>
+                                    <div class="text-left">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="pull-left">
+                                                    <label style="color: cadetblue">Date d'arrivé</label>
+                                                    <div class="input-group" [ngClass]="{'input-group-focus':focus4===true}">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">  <i class="now-ui-icons arrows-1_minimal-down"></i></span>
+                                                        </div>
+                                                        <dp-date-picker #dayPicker class="form-control" name="date_a" formControlName="date_a" (onChange)="handleDate_a($event)"></dp-date-picker>
+                                                    </div>
+                                                </div>
+                                                <div class="pull-left">
+                                                    <label style="color: cadetblue">Date de départ</label>
+                                                    <div class="input-group" [ngClass]="{'input-group-focus':focus5===true}">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">  <i class="now-ui-icons arrows-1_minimal-up"></i></span>
+                                                        </div>
+                                                        <dp-date-picker #dayPicker2 class="form-control" name="date_d" formControlName="date_d" (onChange)="handleDate_b($event)"></dp-date-picker>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="pull-left">
+                                                    <label style="color: cadetblue">Adultes</label>
+                                                    <div class="input-group" [ngClass]="{'input-group-focus':focus2===true}">
+                                                        <select class="input-group">
+                                                            <option value="0">0</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="pull-left" style="margin-left: 25px;">
+                                                    <label style="color: cadetblue">Enfants</label>
+                                                    <div class="input-group" [ngClass]="{'input-group-focus':focus2===true}">
+                                                        <select class="input-group">
+                                                            <option value="0">0</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <button class="btn btn-md btn-primary" (click)="setCalculated(true)">Calculer le prix</button>
+                                            </div>
+                                        </div>
+                                        <hr *ngIf="calculated">
+                                        <h4 class="card-title text-center" style="color: rgb(163, 64, 80)" *ngIf="calculated"><b>Chambres</b></h4>
+                                        <div class="text-left" *ngIf="calculated">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1 x Double en Chambre Standard</td>
+                                                            <td>Logement Petit Déjeuner</td>
+                                                            <td>de 22 TND</td>
+                                                            <td class="td-actions text-center">
+                                                                <button class="btn btn-md btn-primary" (click)="reserveStep2(true)">Réserver</button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1 x Double en Chambre Standard</td>
+                                                            <td>Demi Pension</td>
+                                                            <td>de 68 TND</td>
+                                                            <td class="td-actions text-center">
+                                                                <button class="btn btn-md btn-primary" (click)="reserveStep2(true)">Réserver</button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1 x Double en Chambre Standard</td>
+                                                            <td>Pension Complet</td>
+                                                            <td>de 117 TND</td>
+                                                            <td class="td-actions text-center">
+                                                                <button class="btn btn-md btn-primary" (click)="reserveStep2(true)">Réserver</button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1 x Double en Chambre Standard</td>
+                                                            <td>All In Soft</td>
+                                                            <td>de 160 TND</td>
+                                                            <td class="td-actions text-center">
+                                                                <button class="btn btn-md btn-primary" (click)="reserveStep2(true)">Réserver</button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-signup" *ngIf="reserve_step2" @fade>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label style="color: cadetblue">Nom</label>
+                                            <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Nom Complet..." name="full_name" formControlName="full_name" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label style="color: cadetblue">Prénom</label>
+                                            <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="E-mail..." name="email" formControlName="email" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label style="color: cadetblue">E-mail</label>
+                                            <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                                                </div>
+                                                <input type="email" class="form-control" placeholder="E-mail..." name="email" formControlName="email" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label style="color: cadetblue">Mobile</label>
+                                            <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Mobile..." name="phone" formControlName="phone" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <a href="/" class="btn btn-md btn-primary">Confirmer votre Réservation</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="main">
+        <div class="container">
+            <div class="section">
+                <div class="row">
+                    <div class="col-md-12 mr-auto">
+                        <form class="form" [formGroup]="clientForm">
+                            <div class="card card-signup" *ngIf="step1" @fade>
+                                <div class="card-body">
+                                    <h4 class="card-title text-center" style="color: rgb(163, 64, 80)"><b>Check In</b></h4>
+                                    <div align="center">
+                                        <legend class="text-uppercase" style="color: cadetblue">étape 1/3</legend>
+                                    </div>
+                                    <br>
+                                    <hr><br>
+                                    <div class="text-left">
+                                        <label style="color: cadetblue">Nom Complet</label>
+                                        <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Nom Complet..." (focus)="focus=true" (blur)="focus=false" name="full_name" formControlName="full_name" (input)="handleName($event)" autocomplete="off">
+                                        </div>
+
+                                        <label style="color: cadetblue">Date de Naissance</label>
+                                        <div class="input-group" [ngClass]="{'input-group-focus':focus1===true}">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">  <i class="now-ui-icons text_caps-small"></i></span>
+                                            </div>
+                                            <input type="date" [max]="date" placeholder="Date de Naissance..." (focus)="focus1=true" (blur)="focus1=false" class="form-control" name="b_date" formControlName="b_date" (input)="handleBDate($event)" autocomplete="off">
+                                        </div>
+
+                                        <label style="color: cadetblue">E-mail</label>
+                                        <div class="input-group" [ngClass]="{'input-group-focus':focus6===true}">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">  <i class="now-ui-icons ui-1_email-85"></i></span>
+                                            </div>
+                                            <input type="email" placeholder="E-mail..." (focus)="focus6=true" (blur)="focus6=false" class="form-control" name="email" formControlName="email" (input)="handleEmail($event)" autocomplete="off">
+                                        </div>
+
+                                        <label style="color: cadetblue">N° Téléphone: (Optionnel)</label>
+                                        <div class="input-group" [ngClass]="{'input-group-focus':focus8===true}">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">  <i class="now-ui-icons ui-1_email-85"></i></span>
+                                            </div>
+                                            <input type="text" placeholder="N° Téléphone..." (focus)="focus8=true" (blur)="focus8=false" class="form-control" name="tel" formControlName="tel" (input)="handleTel($event)" autocomplete="off">
+                                        </div>
+
+                                        <label style="color: cadetblue">Nationalité</label>
+                                        <div class="input-group" [ngClass]="{'input-group-focus':focus2===true}"><select class="input-group" (change)="setNationality($event)">
+                                                <option value="Afghane">Afghane (Afghanistan)</option>
+                                                <option value="Albanaise">Albanaise (Albanie)</option>
+                                                <option value="Algérienne">Algérienne (Algérie)</option>
+                                                <option value="Allemande">Allemande (Allemagne)</option>
+                                                <option value="Americaine">Americaine (États-Unis)</option>
+                                                <option value="Andorrane">Andorrane (Andorre)</option>
+                                                <option value="Angolaise">Angolaise (Angola)</option>
+                                                <option value="Antiguaise-et-Barbudienne">Antiguaise-et-Barbudienne (Antigua-et-Barbuda)</option>
+                                                <option value="Argentine">Argentine (Argentine)</option>
+                                                <option value="Armenienne">Armenienne (Arménie)</option>
+                                                <option value="Australienne">Australienne (Australie)</option>
+                                                <option value="Autrichienne">Autrichienne (Autriche)</option>
+                                                <option value="Azerbaïdjanaise">Azerbaïdjanaise (Azerbaïdjan)</option>
+                                                <option value="Bahamienne">Bahamienne (Bahamas)</option>
+                                                <option value="Bahreinienne">Bahreinienne (Bahreïn)</option>
+                                                <option value="Bangladaise">Bangladaise (Bangladesh)</option>
+                                                <option value="Barbadienne">Barbadienne (Barbade)</option>
+                                                <option value="Belge">Belge (Belgique)</option>
+                                                <option value="Belizienne">Belizienne (Belize)</option>
+                                                <option value="Béninoise">Béninoise (Bénin)</option>
+                                                <option value="Bhoutanaise">Bhoutanaise (Bhoutan)</option>
+                                                <option value="Biélorusse">Biélorusse (Biélorussie)</option>
+                                                <option value="Birmane">Birmane (Birmanie)</option>
+                                                <option value="Bissau-Guinéenne">Bissau-Guinéenne (Guinée-Bissau)</option>
+                                                <option value="Bolivienne">Bolivienne (Bolivie)</option>
+                                                <option value="Bosnienne">Bosnienne (Bosnie-Herzégovine)</option>
+                                                <option value="Botswanaise">Botswanaise (Botswana)</option>
+                                                <option value="Brésilienne">Brésilienne (Brésil)</option>
+                                                <option value="Britannique">Britannique (Royaume-Uni)</option>
+                                                <option value="Brunéienne">Brunéienne (Brunéi)</option>
+                                                <option value="Bulgare">Bulgare (Bulgarie)</option>
+                                                <option value="Burkinabée">Burkinabée (Burkina)</option>
+                                                <option value="Burundaise">Burundaise (Burundi)</option>
+                                                <option value="Cambodgienne">Cambodgienne (Cambodge)</option>
+                                                <option value="Camerounaise">Camerounaise (Cameroun)</option>
+                                                <option value="Canadienne">Canadienne (Canada)</option>
+                                                <option value="Cap-verdienne">Cap-verdienne (Cap-Vert)</option>
+                                                <option value="Centrafricaine">Centrafricaine (Centrafrique)</option>
+                                                <option value="Chilienne">Chilienne (Chili)</option>
+                                                <option value="Chinoise">Chinoise (Chine)</option>
+                                                <option value="Chypriote">Chypriote (Chypre)</option>
+                                                <option value="Colombienne">Colombienne (Colombie)</option>
+                                                <option value="Comorienne">Comorienne (Comores)</option>
+                                                <option value="Congolaise">Congolaise (Congo-Brazzaville)</option>
+                                                <option value="Congolaise">Congolaise (Congo-Kinshasa)</option>
+                                                <option value="Cookienne">Cookienne (Îles Cook)</option>
+                                                <option value="Costaricaine">Costaricaine (Costa Rica)</option>
+                                                <option value="Croate">Croate (Croatie)</option>
+                                                <option value="Cubaine">Cubaine (Cuba)</option>
+                                                <option value="Danoise">Danoise (Danemark)</option>
+                                                <option value="Djiboutienne">Djiboutienne (Djibouti)</option>
+                                                <option value="Dominicaine">Dominicaine (République dominicaine)</option>
+                                                <option value="Dominiquaise">Dominiquaise (Dominique)</option>
+                                                <option value="Égyptienne">Égyptienne (Égypte)</option>
+                                                <option value="Émirienne">Émirienne (Émirats arabes unis)</option>
+                                                <option value="Équato-guineenne">Équato-guineenne (Guinée équatoriale)</option>
+                                                <option value="Équatorienne">Équatorienne (Équateur)</option>
+                                                <option value="Érythréenne">Érythréenne (Érythrée)</option>
+                                                <option value="Espagnole">Espagnole (Espagne)</option>
+                                                <option value="Est-timoraise">Est-timoraise (Timor-Leste)</option>
+                                                <option value="Estonienne">Estonienne (Estonie)</option>
+                                                <option value="Éthiopienne">Éthiopienne (Éthiopie)</option>
+                                                <option value="Fidjienne">Fidjienne (Fidji)</option>
+                                                <option value="Finlandaise">Finlandaise (Finlande)</option>
+                                                <option value="Française">Française (France)</option>
+                                                <option value="Gabonaise">Gabonaise (Gabon)</option>
+                                                <option value="Gambienne">Gambienne (Gambie)</option>
+                                                <option value="Georgienne">Georgienne (Géorgie)</option>
+                                                <option value="Ghanéenne">Ghanéenne (Ghana)</option>
+                                                <option value="Grenadienne">Grenadienne (Grenade)</option>
+                                                <option value="Guatémaltèque">Guatémaltèque (Guatemala)</option>
+                                                <option value="Guinéenne">Guinéenne (Guinée)</option>
+                                                <option value="Guyanienne">Guyanienne (Guyana)</option>
+                                                <option value="Haïtienne">Haïtienne (Haïti)</option>
+                                                <option value="Hellénique">Hellénique (Grèce)</option>
+                                                <option value="Hondurienne">Hondurienne (Honduras)</option>
+                                                <option value="Hongroise">Hongroise (Hongrie)</option>
+                                                <option value="Indienne">Indienne (Inde)</option>
+                                                <option value="Indonésienne">Indonésienne (Indonésie)</option>
+                                                <option value="Irakienne">Irakienne (Iraq)</option>
+                                                <option value="Iranienne">Iranienne (Iran)</option>
+                                                <option value="Irlandaise">Irlandaise (Irlande)</option>
+                                                <option value="Islandaise">Islandaise (Islande)</option>
+                                                <option value="Israélienne">Israélienne (Israël)</option>
+                                                <option value="Italienne">Italienne (Italie)</option>
+                                                <option value="Ivoirienne">Ivoirienne (Côte d'Ivoire)</option>
+                                                <option value="Jamaïcaine">Jamaïcaine (Jamaïque)</option>
+                                                <option value="Japonaise">Japonaise (Japon)</option>
+                                                <option value="Jordanienne">Jordanienne (Jordanie)</option>
+                                                <option value="Kazakhstanaise">Kazakhstanaise (Kazakhstan)</option>
+                                                <option value="Kenyane">Kenyane (Kenya)</option>
+                                                <option value="Kirghize">Kirghize (Kirghizistan)</option>
+                                                <option value="Kiribatienne">Kiribatienne (Kiribati)</option>
+                                                <option value="Kittitienne">Kittitienne et Névicienne (Saint-Christophe-et-Niévès)</option>
+                                                <option value="Koweïtienne">Koweïtienne (Koweït)</option>
+                                                <option value="Laotienne">Laotienne (Laos)</option>
+                                                <option value="Lesothane">Lesothane (Lesotho)</option>
+                                                <option value="Lettone">Lettone (Lettonie)</option>
+                                                <option value="Libanaise">Libanaise (Liban)</option>
+                                                <option value="Libérienne">Libérienne (Libéria)</option>
+                                                <option value="Libyenne">Libyenne (Libye)</option>
+                                                <option value="Liechtensteinoise">Liechtensteinoise (Liechtenstein)</option>
+                                                <option value="Lituanienne">Lituanienne (Lituanie)</option>
+                                                <option value="Luxembourgeoise">Luxembourgeoise (Luxembourg)</option>
+                                                <option value="Macédonienne">Macédonienne (Macédoine)</option>
+                                                <option value="Malaisienne">Malaisienne (Malaisie)</option>
+                                                <option value="Malawienne">Malawienne (Malawi)</option>
+                                                <option value="Maldivienne">Maldivienne (Maldives)</option>
+                                                <option value="Malgache">Malgache (Madagascar)</option>
+                                                <option value="Maliennes">Maliennes (Mali)</option>
+                                                <option value="Maltaise">Maltaise (Malte)</option>
+                                                <option value="Marocaine">Marocaine (Maroc)</option>
+                                                <option value="Marshallaise">Marshallaise (Îles Marshall)</option>
+                                                <option value="Mauricienne">Mauricienne (Maurice)</option>
+                                                <option value="Mauritanienne">Mauritanienne (Mauritanie)</option>
+                                                <option value="Mexicaine">Mexicaine (Mexique)</option>
+                                                <option value="Micronésienne">Micronésienne (Micronésie)</option>
+                                                <option value="MMoldaveDA">Moldave (Moldovie)</option>
+                                                <option value="Monegasque">Monegasque (Monaco)</option>
+                                                <option value="Mongole">Mongole (Mongolie)</option>
+                                                <option value="Monténégrine">Monténégrine (Monténégro)</option>
+                                                <option value="Mozambicaine">Mozambicaine (Mozambique)</option>
+                                                <option value="Namibienne">Namibienne (Namibie)</option>
+                                                <option value="Nauruane">Nauruane (Nauru)</option>
+                                                <option value="Néerlandaise">Néerlandaise (Pays-Bas)</option>
+                                                <option value="Néo-Zélandaise">Néo-Zélandaise (Nouvelle-Zélande)</option>
+                                                <option value="Népalaise">Népalaise (Népal)</option>
+                                                <option value="Nicaraguayenne">Nicaraguayenne (Nicaragua)</option>
+                                                <option value="Nigériane">Nigériane (Nigéria)</option>
+                                                <option value="Nigérienne">Nigérienne (Niger)</option>
+                                                <option value="Niuéenne">Niuéenne (Niue)</option>
+                                                <option value="Nord-coréenne">Nord-coréenne (Corée du Nord)</option>
+                                                <option value="Norvégienne">Norvégienne (Norvège)</option>
+                                                <option value="Omanaise">Omanaise (Oman)</option>
+                                                <option value="Ougandaise">Ougandaise (Ouganda)</option>
+                                                <option value="Ouzbéke">Ouzbéke (Ouzbékistan)</option>
+                                                <option value="Pakistanaise">Pakistanaise (Pakistan)</option>
+                                                <option value="Palaosienne">Palaosienne (Palaos)</option>
+                                                <option value="Palestinienne">Palestinienne (Palestine)</option>
+                                                <option value="Panaméenne">Panaméenne (Panama)</option>
+                                                <option value="Papouane-Néo-Guinéenne">Papouane-Néo-Guinéenne (Papouasie-Nouvelle-Guinée)</option>
+                                                <option value="Paraguayenne">Paraguayenne (Paraguay)</option>
+                                                <option value="Péruvienne">Péruvienne (Pérou)</option>
+                                                <option value="Philippine">Philippine (Philippines)</option>
+                                                <option value="Polonaise">Polonaise (Pologne)</option>
+                                                <option value="Portugaise">Portugaise (Portugal)</option>
+                                                <option value="Qatarienne">Qatarienne (Qatar)</option>
+                                                <option value="Roumaine">Roumaine (Roumanie)</option>
+                                                <option value="Russe">Russe (Russie)</option>
+                                                <option value="Rwandaise">Rwandaise (Rwanda)</option>
+                                                <option value="Saint-Lucienne">Saint-Lucienne (Sainte-Lucie)</option>
+                                                <option value="Saint-Marinaise">Saint-Marinaise (Saint-Marin)</option>
+                                                <option value="Saint-Vincentaise et Grenadine">Saint-Vincentaise et Grenadine (Saint-Vincent-et-les Grenadines)</option>
+                                                <option value="Salomonaise">Salomonaise (Îles Salomon)</option>
+                                                <option value="Salvadorienne">Salvadorienne (Salvador)</option>
+                                                <option value="Samoane">Samoane (Samoa)</option>
+                                                <option value="Santoméenne">Santoméenne (Sao Tomé-et-Principe)</option>
+                                                <option value="Saoudienne">Saoudienne (Arabie saoudite)</option>
+                                                <option value="Sénégalaise">Sénégalaise (Sénégal)</option>
+                                                <option value="Serbe">Serbe (Serbie)</option>
+                                                <option value="Seychelloise">Seychelloise (Seychelles)</option>
+                                                <option value="Sierra-Léonaise">Sierra-Léonaise (Sierra Leone)</option>
+                                                <option value="Singapourienne">Singapourienne (Singapour)</option>
+                                                <option value="Slovaque">Slovaque (Slovaquie)</option>
+                                                <option value="Slovène">Slovène (Slovénie)</option>
+                                                <option value="Somalienne">Somalienne (Somalie)</option>
+                                                <option value="Soudanaise">Soudanaise (Soudan)</option>
+                                                <option value="Sri-Lankaise">Sri-Lankaise (Sri Lanka)</option>
+                                                <option value="Sud-Africaine">Sud-Africaine (Afrique du Sud)</option>
+                                                <option value="Sud-Coréenne">Sud-Coréenne (Corée du Sud)</option>
+                                                <option value="Sud-Soudanaise">Sud-Soudanaise (Soudan du Sud)</option>
+                                                <option value="Suédoise">Suédoise (Suède)</option>
+                                                <option value="Suisse">Suisse (Suisse)</option>
+                                                <option value="Surinamaise">Surinamaise (Suriname)</option>
+                                                <option value="Swazie">Swazie (Swaziland)</option>
+                                                <option value="Syrienne">Syrienne (Syrie)</option>
+                                                <option value="Tadjike">Tadjike (Tadjikistan)</option>
+                                                <option value="Tanzanienne">Tanzanienne (Tanzanie)</option>
+                                                <option value="Tchadienne">Tchadienne (Tchad)</option>
+                                                <option value="Tchèque">Tchèque (Tchéquie)</option>
+                                                <option value="Thaïlandaise">Thaïlandaise (Thaïlande)</option>
+                                                <option value="Togolaise">Togolaise (Togo)</option>
+                                                <option value="Tonguienne">Tonguienne (Tonga)</option>
+                                                <option value="Trinidadienne">Trinidadienne (Trinité-et-Tobago)</option>
+                                                <option value="Tunisienne">Tunisienne (Tunisie)</option>
+                                                <option value="Turkmène">Turkmène (Turkménistan)</option>
+                                                <option value="Turque">Turque (Turquie)</option>
+                                                <option value="Tuvaluane">Tuvaluane (Tuvalu)</option>
+                                                <option value="Ukrainienne">Ukrainienne (Ukraine)</option>
+                                                <option value="Uruguayenne">Uruguayenne (Uruguay)</option>
+                                                <option value="Vanuatuane">Vanuatuane (Vanuatu)</option>
+                                                <option value="Vaticane">Vaticane (Vatican)</option>
+                                                <option value="Vénézuélienne">Vénézuélienne (Venezuela)</option>
+                                                <option value="Vietnamienne">Vietnamienne (Viêt Nam)</option>
+                                                <option value="Yéménite">Yéménite (Yémen)</option>
+                                                <option value="Zambienne">Zambienne (Zambie)</option>
+                                                <option value="Zimbabwéenne">Zimbabwéenne (Zimbabwe)</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="">
+                                            <div class="float-left">
+                                            </div>
+                                            <div class="float-right">
+                                                <button class="btn btn-info btn-round btn-md" (click)="step_2()" [disabled]="validateSetp1()">Suivant</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-signup" *ngIf="step2" @fade>
+                                <div class="card-body">
+                                    <h4 class="card-title text-center" style="color: rgb(163, 64, 80)"><b>Check In</b></h4>
+                                    <div align="center">
+                                        <legend class="text-uppercase" style="color: cadetblue">étape 2/3</legend>
+                                    </div>
+                                    <br>
+                                    <hr><br>
+                                    <div class="row text-left">
+                                        <div class="col-md-6">
+                                            <div class="form-check-radio">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="radio" name="id_paper" id="cin" value="cin" [checked]="id_1" (change)="handleId($event)">
+                                                    <span class="form-check-sign"></span>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carte d'Identité
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check-radio">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="radio" name="id_paper" id="passport" value="passport" [checked]="id_2" (change)="handleId($event)">
+                                                    <span class="form-check-sign"></span>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Passport
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div><br>
+                                    <div class="text-left">
+                                        <label style="color: cadetblue">N° Pièce d'Identité</label>
+                                        <div class="input-group" [ngClass]="{'input-group-focus':focus3===true}">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">  <i class="now-ui-icons business_badge"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="N° Pièce d'Identité..." (focus)="focus3=true" (blur)="focus3=false" (focus)="focus=true" (blur)="focus=false" name="id_n" formControlName="id_n" (input)="handleIdN($event)" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="text-left">
+                                        <label style="color: cadetblue">Date d'arrivé</label>
+                                        <div class="input-group" [ngClass]="{'input-group-focus':focus4===true}">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">  <i class="now-ui-icons arrows-1_minimal-down"></i></span>
+                                            </div>
+                                            <input type="date" placeholder="Date d'arrivé.." (focus)="focus4=true" (blur)="focus4=false" class="form-control" name="date_a" formControlName="date_a" (input)="handleDate_a($event)" autocomplete="off">
+                                        </div>
+                                        <label style="color: cadetblue">Date de départ</label>
+                                        <div class="input-group" [ngClass]="{'input-group-focus':focus5===true}">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">  <i class="now-ui-icons arrows-1_minimal-up"></i></span>
+                                            </div>
+                                            <input type="date" placeholder="Date de départ.." (focus)="focus5=true" (blur)="focus5=false" class="form-control" name="date_d" formControlName="date_d" (input)="handleDate_b($event)" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="">
+                                            <div class="pull-left">
+                                                <button class="btn btn-warning btn-round btn-md" (click)="step_1()">Précédent</button>
+                                            </div>
+                                            <div class="pull-right">
+                                                <button class="btn btn-info btn-round btn-md" (click)="step_3()" [disabled]="validateSetp2()">Suivant</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-signup" *ngIf="step3" @fade>
+                                <div class="card-body">
+                                    <h4 class="card-title text-center" style="color: rgb(163, 64, 80)"><b>Check In</b></h4>
+                                    <div align="center">
+                                        <legend class="text-uppercase" style="color: cadetblue">étape 3/3</legend>
+                                    </div>
+                                    <br>
+                                    <hr><br>
+                                    <div class="row">
+                                        <div class="col-md-3 text-left">
+                                            <div class="form-check-radio">
+                                                <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="size" id="1" value="option1" [checked]="size_1" (change)="handleSize($event)"/>
+                                            <span class="form-check-sign"></span>
+                                            Chambre simple 1 lit double
+                                        </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 text-left">
+                                            <div class="form-check-radio">
+                                                <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="size" id="2" value="option2" [checked]="size_2" (change)="handleSize($event)"/>
+                                            <span class="form-check-sign"></span>
+                                            Chambre double 1 lit double
+                                        </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 text-left">
+                                            <div class="form-check-radio">
+                                                <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="size" id="3" value="option3" [checked]="size_3" (change)="handleSize($event)"/>
+                                            <span class="form-check-sign"></span>
+                                            Chambre triple 1 lit simple et 1 lit double
+                                        </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 text-left">
+                                            <div class="form-check-radio">
+                                                <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="size" id="4" value="option4" [checked]="size_4" (change)="handleSize($event)"/>
+                                            <span class="form-check-sign"></span>
+                                            Chambre quadruple 2 lits simples et 1 lit double
+                                        </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row text-left">
+                                        <div class="col-md-6">
+                                            <div class="form-check-radio">
+                                                <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="view" id="sea" value="yes" [checked]="view_1" (change)="handleView($event)"/>
+                                            <span class="form-check-sign"></span>
+                                            Avec vu sur la mer
+                                        </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check-radio">
+                                                <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="view" id="no_sea" value="no" [checked]="view_2" (change)="handleView($event)"/>
+                                            <span class="form-check-sign"></span>
+                                            Sans vu sur la mer
+                                        </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div align="center">
+                                        <legend style="color: cadetblue;">Arrangement</legend>
+                                    </div>
+                                    <br>
+                                    <div class="row text-left">
+
+                                        <div class="col-md-3">
+                                            <div class="form-check-radio">
+                                                <label class="form-check-label">
+                                          <input class="form-check-input" type="radio" name="arrangement" id="lpd" value="lpd" [checked]="arran" (change)="handleArrangement($event)"/>
+                                          <span class="form-check-sign"></span>
+                                          L.P.D
+                                      </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-check-radio">
+                                                <label class="form-check-label">
+                                          <input class="form-check-input" type="radio" name="arrangement" id="dp" value="dp" [checked]="arran" (change)="handleArrangement($event)"/>
+                                          <span class="form-check-sign"></span>
+                                          D.P
+                                      </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-check-radio">
+                                                <label class="form-check-label">
+                                          <input class="form-check-input" type="radio" name="arrangement" id="pc" value="pc" [checked]="arran" (change)="handleArrangement($event)"/>
+                                          <span class="form-check-sign"></span>
+                                          P.C
+                                      </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-check-radio">
+                                                <label class="form-check-label">
+                                          <input class="form-check-input" type="radio" name="arrangement" id="all" value="all_in" [checked]="arran" (change)="handleArrangement($event)"/>
+                                          <span class="form-check-sign"></span>
+                                          All In
+                                      </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="card-footer">
+                                        <div class="">
+                                            <div class="pull-left">
+                                                <button class="btn btn-warning btn-round btn-md" (click)="step_2()">Précédent</button>
+                                            </div>
+                                            <div class="pull-right">
+                                                <button class="btn btn-success btn-round btn-md" (click)="done()" [disabled]="validateForm()">Confirmer</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <footer class="footer footer-big footer-white">
+        <div class="container">
+            <hr>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12" align="center">
+                        <h5>Réseaux Sociaux</h5>
+                        <ul class="social-buttons">
+                            <li>
+                                <a href="https://www.facebook.com/Hotel.Habib.Monastir/" target="_blank" class="btn btn-icon btn-neutral btn-facebook btn-round">
+                                    <i class="fa fa-facebook-square"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/delphin_elhabib/" target="_blank" class="btn btn-primary btn-neutral btn-round btn-icon">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#pablo" class="btn btn-icon btn-neutral btn-google btn-round">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="copyright">
+                Copyrights &copy; {{date | date: 'yyyy'}} <label style="color: cadetblue; cursor: pointer;">Delphin
+                    Hotels & Resorts</label>, All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+</div>

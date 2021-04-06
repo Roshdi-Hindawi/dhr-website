@@ -1,0 +1,23 @@
+.text-black {
+    color: black !important;
+}
+
+.responsive-mobile-sep {
+    margin-top: 2%;
+    margin-left: 22%;
+    width: 300px;
+}
+
+.reservation-section {
+    background-image: url('../../assets/img/gallery/38.jpg');
+    position: sticky;
+    top: 50px;
+    // margin-top: 5%;
+    z-index: 99999;
+    height: 150px;
+    width: 100%;
+}
+
+agm-map {
+    height: 300px
+}

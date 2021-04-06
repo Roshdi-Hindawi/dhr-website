@@ -1,0 +1,7 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/scss/bootstrap.scss";
+.checkingModal .modal-dialog {
+    padding-top: 20%;
+    max-width: 500px;
+}
